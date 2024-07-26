@@ -1,3 +1,9 @@
+# Ignore everything in the configuration directory
+configuration/*
+
+# Except for files ending with example.csv
+!configuration/*.example.csv
+
 # Logs
 logs
 *.log
