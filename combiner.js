@@ -38,7 +38,7 @@ module.exports = function (data, mode) {
         case "ANYTONE":
             return [
                 // формуємо хедерси (рядок із назвами колонок)
-                ['No.', 'TG/DMR ID', 'Call Alert', 'Name', 'City', 'Call Type', 'Callsign', 'State/Prov,Country', 'Remarks'],
+                ['No.', 'TG/DMR ID', 'Call Alert', 'Name', 'City', 'Call Type', 'Callsign', 'State/Prov', 'Country', 'Remarks'],
         
                 ...data.custom.map(
                     // підтягуємо кастомні данні із ANYTONE.csv

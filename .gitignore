@@ -1,4 +1,7 @@
 # Ignore everything in the configuration directory
+generation/*
+
+# Ignore everything in the configuration directory
 configuration/*
 
 # Except for files ending with example.csv

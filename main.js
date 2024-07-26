@@ -5,8 +5,8 @@ const generateCsvFile = require('./generator');
 const dataCombiner = require('./combiner');
 const moment = require('moment');
 
-const FILE_NAME = "MD9600-RT90";
-// const FILE_NAME = "ANYTONE";
+// const FILE_NAME = "MD9600-RT90";
+const FILE_NAME = "ANYTONE";
 
 Promise.all([
 
@@ -18,13 +18,13 @@ Promise.all([
     }),
 
     Promise.resolve(loadK2CallSigns('./configuration/k2_call_signs.csv')),
-    Promise.resolve(readCustomContacts('./configuration/MD9600-RT90.csv')),
-    // Promise.resolve(readCustomContacts('./configuration/ANYTONE.csv'))
+    // Promise.resolve(readCustomContacts('./configuration/MD9600-RT90.csv')),
+    Promise.resolve(readCustomContacts('./configuration/ANYTONE.csv'))
 
 ]).then(([api, k2, custom]) => {
 
     const raw = {api, k2, custom}
-    const data = dataCombiner(raw, "MD9600-RT90") // Формат данних: "MD9600-RT90" або "ANYTONE"
+    const data = dataCombiner(raw, "ANYTONE") // Формат данних: "MD9600-RT90" або "ANYTONE"
     const path = `./generation/CL-${FILE_NAME}-${moment().format('YYYYMMDD-HHmmss')}.csv`
 
     return generateCsvFile(path, data);
