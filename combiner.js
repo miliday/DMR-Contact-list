@@ -30,10 +30,10 @@ module.exports = function (data, mode) {
     }
 
     switch (mode) {
-        // Тут формування данних, якщо колонок більше ніж у заголовків (custom_contacts.scv) вони не будуть враховані!
+        // Тут формування данних, якщо колонок більше ніж у хедерсах вони не будуть враховані!
         // доступні поля в item: id (дмр ід), callsign (оф. позивний), city (місто), country (країна), fname (ім'я), surname (фамілія), remarks (хз), state (хз)
+        // отримати порядковий номер можна так: index + 1 або currentIndex(index) - ця функція повертає індекс з урахуванням кастомних контактів із конфігів
         // отримати позивний к2 для цього item можна так: getK2CS(item.id)
-        // отримати порядковий номер можна так: currentIndex(index)
 
         case "ANYTONE":
             return [
@@ -41,7 +41,7 @@ module.exports = function (data, mode) {
                 ['No.', 'TG/DMR ID', 'Call Alert', 'Name', 'City', 'Call Type', 'Callsign', 'State/Prov', 'Country', 'Remarks'],
         
                 ...data.custom.map(
-                    // підтягуємо кастомні данні із ANYTONE.csv
+                    // підтягуємо додаткові кастомні контакти із ANYTONE.csv
                     item => Object.keys(item).map(key => item[key]) 
                 ),
         
@@ -59,7 +59,7 @@ module.exports = function (data, mode) {
                 ['Contact Name', 'Call Type', 'Call ID', 'Call Receive Tone'],
         
                 ...data.custom.map(
-                    // підтягуємо кастомні данні із MD9600-RT90.csv
+                    // підтягуємо додаткові кастомні контакти із MD9600-RT90.csv
                     item => Object.keys(item).map(key => item[key])
                 ),
         
