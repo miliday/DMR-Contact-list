@@ -1,6 +1,14 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function (filePath = '', data) {
+    const dir = path.dirname(filePath);
+    
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+
     const headers = data[0].map(header => ({
         id: header,
         title: header
@@ -19,10 +27,11 @@ module.exports = function (filePath = '', data) {
     });
 
     return csvWriter.writeRecords(records)
+
         .then(() => {
             console.log("Saved to file:", filePath);
-            console.log("Total contacts:", data.length - 1);
-            
+            console.log("Total contacts:", records.length); // Исправлено, чтобы отражать количество записей, а не строк данных
+
             return filePath;
         })
 
