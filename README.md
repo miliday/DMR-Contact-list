@@ -12,9 +12,10 @@ Supports formats from radio:
 
 # Requirements
 
-1. Install Node JS v18.XX.XX LTS [Node.js official website]([https://nodejs.org/](https://nodejs.org/en/download/package-manager))
-2. Install dependesis
-`npm install`  
+1. Download Node JS v18.XX.XX LTS from [the official Node.js website](https://nodejs.org/en/download/package-manager)
+2. Install Node JS and open a terminal in the project folder
+3. Install dependencies
+`npm install`
 
 # How to use
 
