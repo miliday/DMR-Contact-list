@@ -2,7 +2,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function (filePath = '', data) {
+module.exports = function (filePath = '', data, delimiter = ',') {
     const dir = path.dirname(filePath);
     
     if (!fs.existsSync(dir)) {
@@ -24,6 +24,7 @@ module.exports = function (filePath = '', data) {
     const csvWriter = createCsvWriter({
         path: filePath,
         header: headers,
+        fieldDelimiter: delimiter,
     });
 
     return csvWriter.writeRecords(records)

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { parse } = require('csv-parse/sync');
 
-module.exports = function (filePath) {
+module.exports = function (filePath, delimiter = ',') {
     try {
         const content = fs.readFileSync(filePath, { encoding: 'utf-8' });
 
@@ -10,6 +10,7 @@ module.exports = function (filePath) {
             columns: true,
             skip_empty_lines: true,
             relax_column_count: true,
+            delimiter: delimiter
         });
 
     } catch (error) {

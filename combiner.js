@@ -102,6 +102,33 @@ module.exports = function (data, mode) {
             ];
 
             break;
+
+        case "OPENGD77-MD9600-RT90":
+            result = [
+                // формуємо хедерси (рядок із назвами колонок)
+                ['Contact Name', 'ID', 'ID Type', 'TS Override'],
+            ];
+            
+            result = [
+                ...result,
+                ...data.custom.map(
+                    // підтягуємо додаткові кастомні контакти із MD9600-RT90.csv
+                    item => Object.keys(item).map(key => item[key]),
+                ),
+            ];
+
+            result = [
+                ...result,
+                ...data.api.map(item =>
+                //  Contact Name,                ID,                ID Type,    TS Override
+                //  ----------------------------------------------------------------------------------
+                    [ getNameMD9600RT90(item),   String(item.id),   'Private',    'Disabled' ].map(
+                        item => transliterate(item)
+                    ),
+                ),
+            ];
+
+            break;
         };
 
     return result;
