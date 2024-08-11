@@ -11,17 +11,9 @@ module.exports = function (data, mode) {
         return index + result.length
     }
 
-    if (mode === "ANYTONE") {
-        data.api.sort(
-            item => data.k2[item.id] ? 1 : -1
-        )
-    }
-
-    if (mode === "MD9600-RT90") {
-        data.api.sort(
-            item => data.k2[item.id] ? 1 : -1
-        )
-    }
+    data.api.sort(
+        item => data.k2[item.id] ? -1 : 1
+    )
 
     // Форматування імені контакту для TYT MD9600 або Retevis RT90
     function getNameMD9600RT90(item) {    
